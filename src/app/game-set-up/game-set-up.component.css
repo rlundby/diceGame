@@ -1,0 +1,15 @@
+.choosePlayerNo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60vh;
+  align-items: center;
+}
+
+.choosePlayerNo h3 {
+  color: white;
+}
+
+.choosePlayerNo button {
+  width: 200px;
+}

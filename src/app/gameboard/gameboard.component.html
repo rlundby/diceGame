@@ -1,0 +1,14 @@
+<!--<button (click)="currentGameState()">Get Game State</button>-->
+<div class="main-container">
+  <div class="gameBoard flexContainer">
+
+      <h1>Tärning</h1>
+      <game-start-menu *ngIf="gameState.atStartMenu === true"></game-start-menu>
+      <game-set-up ></game-set-up>
+      <game-in-progress *ngIf="gameState.gameStarted == true"></game-in-progress>
+      <h3 *ngIf="this.gameState.gameOver">{{ this.gameState.winner }} har vunnit! Grattis! :) </h3>
+
+  </div>
+</div>
+<!--<game-set-up *ngIf="gameState.settingUpNewGame === true"></game-set-up>-->
+

@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css);
+
+body {
+  background-image: url("assets/background.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

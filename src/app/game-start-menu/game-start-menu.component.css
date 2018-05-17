@@ -1,0 +1,12 @@
+.startMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 60vh;
+}
+
+.startMenu button{
+  margin-bottom: 5px;
+  width: 150px;
+}
+
