@@ -68,6 +68,7 @@ export class GameInProgressComponent implements OnInit {
   }
 
   nextRound() {
+    this.getNextPlayer();
     for(let player of this.players) {
       player.score = 0
     }

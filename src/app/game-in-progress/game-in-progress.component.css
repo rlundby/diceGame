@@ -3,11 +3,22 @@
 }
 
 .scoreBoard {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 60vh;
   align-items: center;
+  width: 20vw;
+}
 
+.playerIndicator {
+  color: white;
+  box-shadow: black;
+}
+
+.borderless td, .borderless th {
+  border: none;
+}
+
+.borderless th {
+  font-family: Roboto, serif;
 }

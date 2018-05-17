@@ -1,7 +1,7 @@
 <!--<button (click)="hej()">Get players</button>-->
-<button class="btn btn-xs btn-primary" (click)="saveGameState()"> Spara spelet </button>
+<button class="btn btn-primary btn-lg" (click)="saveGameState()"> Spara spelet </button>
 <div class="scoreBoard">
-  <table class="table">
+  <table class="table borderless">
     <tr>
       <th scope="col">Namn</th>
       <th scope="col">Poäng</th>
@@ -9,8 +9,8 @@
       <th scope="col">Vinst</th>
     </tr>
     <tr *ngFor="let player of players">
-      <td> {{ player.name }}</td>
-      <td> {{ player.score }}</td>
+      <td> <p>{{ player.name }}</p></td>
+      <td> <p>{{ player.score }}</p></td>
       <td>
         <input
           class="form-control newScore"
@@ -22,10 +22,10 @@
           (keydown.enter)="newScores(player, newScore.value); newScore.value = ''; getNextPlayer()"
         >
       </td>
-      <td> {{ player.totalWin }} :-</td>
+      <td> <p>{{ player.totalWin }} :-</p></td>
     </tr>
   </table>
-  <h1 *ngIf="!gameState.gameOver">{{currentPlayer.name}}s tur att spela!</h1>
+  <h1 class="playerIndicator" *ngIf="!gameState.gameOver">{{currentPlayer.name}}s tur att spela!</h1>
   <div *ngIf="gameState.gameOver">
     <button
       class="btn btn-lg btn-success"

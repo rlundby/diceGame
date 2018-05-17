@@ -5,3 +5,8 @@
   height: 60vh;
   align-items: center;
 }
+
+.createPlayers label {
+  color: white;
+  font-size: 25px;
+}
