@@ -10,8 +10,10 @@ import {Subscription} from "rxjs/internal/Subscription";
 export class GameInProgressComponent implements OnInit {
 
   subscription: Subscription;
-  stateSubscription: Subscription
+  stateSubscription: Subscription;
+
   players = [];
+
   gameState = {
     atStartMenu: true,
     settingUpNewGame: false,
@@ -71,5 +73,8 @@ export class GameInProgressComponent implements OnInit {
     }
     this.gameState.gameOver = false;
   }
-
+  saveGameState() {
+    localStorage.setItem('savedGameState', JSON.stringify(this.gameState));
+    localStorage.setItem('savedPlayerState', JSON.stringify(this.players));
+  }
 }

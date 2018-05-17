@@ -26,7 +26,7 @@ export class GameboardComponent implements OnInit {
     this.subscription = this.playersService.getGameState()
       .subscribe( gameState => {
         this.gameState = gameState;
-      })
+      });
   }
 
   currentGameState() {

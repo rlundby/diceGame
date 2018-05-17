@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
+import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class PlayersService {
   }
 
   createPlayer(id) {
-    let newPlayer = {
+    const newPlayer = {
       name: '',
       id: id,
       score: 0,
@@ -49,7 +49,7 @@ export class PlayersService {
   }
 
   creatingPlayers() {
-    let newGameState = {
+    const newGameState = {
       atStartMenu: false,
       settingUpNewGame: false,
       creatingPlayers: true,
@@ -63,9 +63,9 @@ export class PlayersService {
   }
 
   updatePlayers(newPlayers) {
-    let newPlayerList = newPlayers;
-    for(let player of newPlayerList) {
-      let foundIndex = this.players.findIndex(x => x.id === player.id);
+    const newPlayerList = newPlayers;
+    for (const player of newPlayerList) {
+      const foundIndex = this.players.findIndex(x => x.id === player.id);
       if (player.id === 1) {
         this.players[foundIndex].isFirst = true;
       }
@@ -79,7 +79,7 @@ export class PlayersService {
   }
 
   startNewGame() {
-    let newGameState = {
+    const newGameState = {
       atStartMenu: false,
       settingUpNewGame: true,
       creatingPlayers: false,
@@ -93,7 +93,7 @@ export class PlayersService {
   }
 
   startGame() {
-    let newGameState = {
+    const newGameState = {
       atStartMenu: false,
       settingUpNewGame: false,
       creatingPlayers: false,
@@ -112,41 +112,38 @@ export class PlayersService {
       return false;
     }
 
-    let foundIndex = this.players.findIndex(x => x.id === player.id);
+    const foundIndex = this.players.findIndex(x => x.id === player.id);
     this.players[foundIndex].score += score;
-    let newScore = this.players[foundIndex].score;
+    const newScore = this.players[foundIndex].score;
 
-    if(player.isLast === true && player.score >= 3000 ){
+    if (player.isLast === true && player.score >= 3000 ) {
       this.gameState.gameOver = true;
-      this.calculateWinner()
+      this.calculateWinner();
     }
 
-      if(this.gameState.lastRound === true) {
+      if (this.gameState.lastRound === true) {
 
-        if(player.isLast === true) {
+        if (player.isLast === true) {
           console.log('Game is now over!');
           this.gameState.gameOver = true;
-          this.calculateWinner()
-        }
-        else {
-          console.log('Ny poäng: ' + newScore)
+          this.calculateWinner();
+        } else {
+          console.log('Ny poäng: ' + newScore);
         }
 
-      }
-      else if (newScore >= 3000) {
-        console.log('Vinst!')
+      } else if (newScore >= 3000) {
+        console.log('Vinst!');
         this.gameState.lastRound = true;
-      }
-      else {
-        console.log('Ny poäng: ' + newScore)
+      } else {
+        console.log('Ny poäng: ' + newScore);
       }
     this.updateSubscribers();
   }
 
   calculateWinner() {
     // Finds the player with the highest score
-    let winningScore = Math.max.apply(Math, this.players.map(function(o){return o.score}));
-    let winner = this.players.findIndex(x => x.score === winningScore);
+    const winningScore = Math.max.apply(Math, this.players.map(function(o) {return o.score; }));
+    const winner = this.players.findIndex(x => x.score === winningScore);
 
     // Set their name as the winner
     this.gameState.winner = this.players[winner].name;
@@ -161,12 +158,12 @@ export class PlayersService {
 
     // Set the person before them as last player
     if ( winner === 0 ) {
-      let lastPlayer = this.players.length - 1;
+      const lastPlayer = this.players.length - 1;
       this.players[lastPlayer].isFirst = false;
       this.players[lastPlayer].isLast = true;
 
     } else {
-      let lastPlayer = winner - 1;
+      const lastPlayer = winner - 1;
       this.players[lastPlayer].isFirst = false;
       this.players[lastPlayer].isLast = true;
     }
@@ -174,13 +171,20 @@ export class PlayersService {
   }
 
   calculateWins(winner) {
-    for(let player of this.players) {
+    for (const player of this.players) {
       if (player.id !== winner.id) {
-        let difference = (winner.score - player.score) / 100;
+        const difference = (winner.score - player.score) / 100;
         winner.totalWin += difference;
         player.totalWin = (player.score - winner.score) / 100 ;
       }
     }
+  }
+
+  loadGame(savedGame, savedPlayers) {
+    this.gameState = savedGame;
+    this.players = savedPlayers;
+
+    this.updateSubscribers();
   }
 
   updateSubscribers() {

@@ -16,5 +16,10 @@ export class GameStartMenuComponent implements OnInit {
   startNewGame() {
     this.playersService.startNewGame();
   }
+  loadGame() {
+    const savedGame = JSON.parse(localStorage.getItem('savedGameState'));
+    const savedPlayers = JSON.parse(localStorage.getItem('savedPlayerState'));
+    this.playersService.loadGame(savedGame, savedPlayers);
+  }
 
 }
