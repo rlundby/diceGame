@@ -77,10 +77,17 @@ export class GameInProgressComponent implements OnInit {
     for (let player of this.players) {
       player.score = 0;
     }
-    this.gameState.gameOver = false;
+    this.playersService.startGame();
   }
   saveGameState() {
     localStorage.setItem('savedGameState', JSON.stringify(this.gameState));
     localStorage.setItem('savedPlayerState', JSON.stringify(this.players));
+  }
+
+  getGameState() {
+    console.log(this.gameState);
+  }
+  getPlayerState() {
+    console.log(this.players);
   }
 }

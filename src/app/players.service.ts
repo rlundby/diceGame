@@ -151,6 +151,12 @@ export class PlayersService {
     // Calculate the money they got
     this.calculateWins(this.players[winner]);
 
+    for(let player of this.players) {
+      player.hasWon = false;
+      player.isLast = false;
+      player.isFirst = false;
+    }
+
     // Set them as the winner as first player
     this.players[winner].hasWon = true;
     this.players[winner].isFirst = true;
@@ -158,16 +164,16 @@ export class PlayersService {
 
     // Set the person before them as last player
     if ( winner === 0 ) {
+      console.log('Först vann');
       const lastPlayer = this.players.length - 1;
       this.players[lastPlayer].isFirst = false;
       this.players[lastPlayer].isLast = true;
-
     } else {
+      console.log('En vann');
       const lastPlayer = winner - 1;
       this.players[lastPlayer].isFirst = false;
       this.players[lastPlayer].isLast = true;
     }
-
   }
 
   calculateWins(winner) {

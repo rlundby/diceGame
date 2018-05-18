@@ -10,12 +10,15 @@
 }
 
 .playerIndicator {
-  color: white;
+  color: blue;
   box-shadow: black;
 }
 
 .borderless td, .borderless th {
   border: none;
+}
+.borderless td p {
+  font-weight: bold;
 }
 
 .borderless th {
