@@ -1,19 +1,23 @@
 
 <div *ngIf="gameState.settingUpNewGame === true" class="choosePlayerNo">
   <h3> Välj antal spelare </h3>
-  <form>
+  <form
+  #f="ngForm"
+  >
     <div class="form-group">
       <input
         type="number"
         min="2"
         max="10"
-        #amountOfPlayers
+        #amountOfPlayers="ngModel"
         class="form-control"
         required
+        ngModel
+        name="numberOfPlayers"
       >
     </div>
+    <button [disabled]="!f.valid" type="submit" class="btn btn-lg btn-success" (click)="createPlayers(amountOfPlayers.value)"> Fortsätt </button>
   </form>
-  <button  class="btn btn-lg btn-success" (click)="createPlayers(amountOfPlayers.value)"> Fortsätt </button>
 </div>
 <div *ngIf="gameState.creatingPlayers == true;">
   <create-players [players]="players"></create-players>

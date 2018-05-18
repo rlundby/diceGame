@@ -16,12 +16,14 @@ export class GameSetUpComponent implements OnInit {
   gameState = {};
 
   createPlayers(number) {
-    let numberOfPlayers = Number(number);
-    for(let i = 0; i < numberOfPlayers; i++)
-    {
-      this.playersService.createPlayer(i + 1)
+    if (!number ) {
+      return false;
     }
-    this.playersService.creatingPlayers()
+    const numberOfPlayers = Number(number);
+    for (let i = 0; i < numberOfPlayers; i++) {
+      this.playersService.createPlayer(i + 1);
+    }
+    this.playersService.creatingPlayers();
   }
   constructor(private playersService: PlayersService) { }
 

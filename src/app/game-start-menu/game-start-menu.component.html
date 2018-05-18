@@ -1,5 +1,5 @@
 <div class="startMenu">
   <button class="btn btn-lg btn-primary" (click)="startNewGame()"> Nytt spel </button>
-  <button class="btn btn-lg" (click)="loadGame()">  Fortsätt </button>
+  <button [disabled]="noSaveFile" class="btn btn-lg" (click)="loadGame()">  Fortsätt </button>
 </div>
 

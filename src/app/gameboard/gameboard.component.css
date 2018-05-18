@@ -1,7 +1,6 @@
 .main-container {
   display: flex;
   justify-content: center;
-  height: 80vh;
 }
 .flexContainer h1 {
   color: white;
@@ -9,4 +8,5 @@
 
 .gameBoard {
   width: 60vw;
+  padding-top: 20px;
 }

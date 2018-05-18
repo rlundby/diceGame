@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
-import {PlayersService} from "../players.service";
-import {Subscription} from "rxjs/internal/Subscription";
+import {PlayersService} from '../players.service';
+import {Subscription} from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'game-in-progress',
@@ -13,6 +13,7 @@ export class GameInProgressComponent implements OnInit {
   stateSubscription: Subscription;
 
   players = [];
+  errorMsg = '';
 
   gameState = {
     atStartMenu: true,
@@ -43,15 +44,19 @@ export class GameInProgressComponent implements OnInit {
   }
 
   newScores(player, newScore) {
-    let score = Number(newScore);
+    this.errorMsg = '';
+    if (newScore < 349) {
+      this.errorMsg = 'Oj! Du vet väl att du måste få minst 350 poäng?';
+      return false;
+    }
+    const score = Number(newScore);
     this.playersService.updateScore(player, score);
   }
 
-  hej() {
-    console.log(this.players);
-  }
-
-  getNextPlayer() {
+  getNextPlayer(newScore) {
+    if (newScore < 349) {
+      return false;
+    }
     if ( this.gameState.gameOver === true) {
       const nextPlayer = this.players.find( x => x.isFirst === true);
       this.currentPlayer = nextPlayer;
@@ -68,9 +73,9 @@ export class GameInProgressComponent implements OnInit {
   }
 
   nextRound() {
-    this.getNextPlayer();
-    for(let player of this.players) {
-      player.score = 0
+    this.getNextPlayer(400);
+    for (let player of this.players) {
+      player.score = 0;
     }
     this.gameState.gameOver = false;
   }

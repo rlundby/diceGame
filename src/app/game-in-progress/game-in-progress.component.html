@@ -19,12 +19,13 @@
           #newScore
           [autofocus]="true"
           id="scorefield{{player.id}}"
-          (keydown.enter)="newScores(player, newScore.value); newScore.value = ''; getNextPlayer()"
+          (keydown.enter)="newScores(player, newScore.value); getNextPlayer(newScore.value); newScore.value = '' "
         >
       </td>
       <td> <p>{{ player.totalWin }} :-</p></td>
     </tr>
   </table>
+  <p  class="errorMsg" *ngIf="errorMsg !== ''">{{errorMsg}}</p>
   <h1 class="playerIndicator" *ngIf="!gameState.gameOver">{{currentPlayer.name}}s tur att spela!</h1>
   <div *ngIf="gameState.gameOver">
     <button

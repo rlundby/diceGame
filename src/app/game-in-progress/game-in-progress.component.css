@@ -22,3 +22,18 @@
 .borderless th {
   font-family: Roboto, serif;
 }
+
+.errorMsg {
+  color: red;
+  font-size: 25px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance:textfield;
+}

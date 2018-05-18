@@ -8,9 +8,17 @@ import {PlayersService} from "../players.service";
 })
 export class GameStartMenuComponent implements OnInit {
 
+  noSaveFile;
   constructor(private playersService: PlayersService) { }
 
   ngOnInit() {
+    const savedGame = JSON.parse(localStorage.getItem('savedGameState'));
+    const savedPlayers = JSON.parse(localStorage.getItem('savedPlayerState'));
+    if (!savedGame || !savedPlayers ) {
+      this.noSaveFile = true;
+    } else {
+      this.noSaveFile = false;
+    }
   }
 
   startNewGame() {

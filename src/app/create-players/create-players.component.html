@@ -1,18 +1,20 @@
 <div class="flexContainer createPlayers">
-  <div *ngFor="let player of players">
-    <div class="form-group">
+  <form
+  #playerNames="ngForm"
+  >
+    <div *ngFor="let player of players" class="form-group">
       <label for="player{{player.id}}"> Ange namn för spelare {{player.id}}:</label>
       <input
         class="form-control"
         type="text"
-        name="playername"
+        name="playername{{player.id}}"
         id="player{{player.id}}"
         #inputField
         [(ngModel)]="player.name"
         (change)="player.name == inputField.value "
+        required
       >
     </div>
-  </div>
-
-  <button class="btn btn-lg btn-success" (click)="updatePlayers()">Starta spelet!</button>
+    <button [disabled]="!playerNames.valid" class="btn btn-lg btn-success" (click)="updatePlayers()">Starta spelet!</button>
+  </form>
 </div>
