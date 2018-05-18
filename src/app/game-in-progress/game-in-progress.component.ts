@@ -45,7 +45,7 @@ export class GameInProgressComponent implements OnInit {
 
   newScores(player, newScore) {
     this.errorMsg = '';
-    if (newScore < 349) {
+    if (newScore < 349 && newScore > 0) {
       this.errorMsg = 'Oj! Du vet väl att du måste få minst 350 poäng?';
       return false;
     }
@@ -54,7 +54,7 @@ export class GameInProgressComponent implements OnInit {
   }
 
   getNextPlayer(newScore) {
-    if (newScore < 349) {
+    if (newScore < 349 && newScore > 0) {
       return false;
     }
     if ( this.gameState.gameOver === true) {
@@ -73,7 +73,7 @@ export class GameInProgressComponent implements OnInit {
   }
 
   nextRound() {
-    this.getNextPlayer(400);
+    this.getNextPlayer(350);
     for (let player of this.players) {
       player.score = 0;
     }
