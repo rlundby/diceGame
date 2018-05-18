@@ -181,7 +181,7 @@ export class PlayersService {
       if (player.id !== winner.id) {
         const difference = (winner.score - player.score) / 100;
         winner.totalWin += difference;
-        player.totalWin = (player.score - winner.score) / 100 ;
+        player.totalWin -= difference;
       }
     }
   }
